@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "org.godottest.tictactoe",
+      "sha256_cert_fingerprints": [
+        "99:7C:13:F1:18:9C:F2:1C:89:D6:AF:02:A8:1D:2D:59:70:74:1D:6F:83:5B:44:3C:12:25:61:21:54:58:98:20"
+      ]
+    }
+  }
+]
