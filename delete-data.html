@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- How to delete the game's data (P4.7): the web link Google Play asks for next to the in-game deletion.
+     English and Ukrainian, like privacy.html. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete your data — Tic Tac Toe: X vs O</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: linear-gradient(160deg, #142a57, #2a5298) fixed; color: #e8eefc;
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { box-sizing: border-box; width: min(760px, calc(100% - 32px)); margin: 24px auto; padding: 24px 28px;
+    border-radius: 18px; background: rgba(13, 23, 51, 0.86); border: 1px solid rgba(255, 255, 255, 0.1); }
+  h1 { margin: 0 0 4px; font-size: 26px; color: #ffd166; }
+  h2 { margin: 26px 0 6px; font-size: 19px; color: #ffd166; }
+  a { color: #8fc1ff; }
+  .langs { float: right; font-size: 14px; }
+  .date { opacity: 0.75; font-size: 14px; }
+  ol, ul { padding-left: 22px; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<main>
+<div class="langs"><a href="#en" data-lang="en">English</a> · <a href="#uk" data-lang="uk">Українська</a></div>
+
+<section id="en" lang="en">
+<h1>Delete your data</h1>
+<p class="date">Tic Tac Toe: X vs O · developer x1y1z1-dev</p>
+
+<h2>In the game</h2>
+<ol>
+  <li>Open the game and tap <b>Online</b>.</li>
+  <li>Tap <b>Profile</b>.</li>
+  <li>Tap <b>Delete my online data</b> and confirm.</li>
+</ol>
+<p>This deletes at once your anonymous player account (the player ID) and the room you are in.</p>
+
+<h2>Without the game</h2>
+<p>Send an e-mail to <a href="mailto:just.yrik@gmail.com?subject=Delete%20my%20data">just.yrik@gmail.com</a> with
+the subject "Delete my data" and your player ID (in the game: Online → Profile → Your player ID). We delete the
+account within 30 days and answer you. If you no longer know your player ID: it holds no name, e-mail or phone
+number, so it cannot be linked to you, and every room it played in has been deleted within 24 hours.</p>
+
+<h2>What is deleted and what is kept</h2>
+<ul>
+  <li><b>Deleted:</b> your anonymous player account and the rooms you are in (rooms are deleted after at most 24 hours
+    anyway).</li>
+  <li><b>Kept on your phone:</b> your settings, scores and statistics — they never leave the phone. Uninstall the game
+    or clear its data to delete them.</li>
+  <li><b>Kept by us:</b> nothing else. Your e-mail request is deleted once it is handled.</li>
+</ul>
+<p>More in the <a href="privacy.html">privacy policy</a>.</p>
+</section>
+
+<section id="uk" lang="uk">
+<h1>Видалення даних</h1>
+<p class="date">Хрестики-нулики (Tic Tac Toe: X vs O) · розробник x1y1z1-dev</p>
+
+<h2>У грі</h2>
+<ol>
+  <li>Відкрийте гру й натисніть <b>Онлайн</b>.</li>
+  <li>Натисніть <b>Профіль</b>.</li>
+  <li>Натисніть <b>Видалити мої онлайн-дані</b> й підтвердьте.</li>
+</ol>
+<p>Це одразу видаляє ваш анонімний акаунт гравця (ID гравця) і кімнату, у якій ви є.</p>
+
+<h2>Без гри</h2>
+<p>Надішліть лист на <a href="mailto:just.yrik@gmail.com?subject=Delete%20my%20data">just.yrik@gmail.com</a> з темою
+«Видалити мої дані» та своїм ID гравця (у грі: Онлайн → Профіль → Ваш ID гравця). Ми видалимо акаунт протягом 30
+днів і відповімо вам. Якщо ви вже не знаєте свій ID: у ньому немає імені, e-mail чи номера телефону, тож його не
+можна пов'язати з вами, а всі кімнати, де він грав, видалено не пізніше ніж за 24 години.</p>
+
+<h2>Що видаляється і що лишається</h2>
+<ul>
+  <li><b>Видаляється:</b> ваш анонімний акаунт гравця і кімнати, у яких ви є (кімнати й так видаляються не пізніше ніж
+    за 24 години).</li>
+  <li><b>Лишається на телефоні:</b> налаштування, рахунок і статистика — вони не залишають телефон. Щоб стерти їх,
+    видаліть гру або її дані.</li>
+  <li><b>Лишається в нас:</b> нічого. Ваш лист-запит видаляємо, щойно його виконано.</li>
+</ul>
+<p>Докладніше — у <a href="privacy.html#uk">політиці конфіденційності</a>.</p>
+</section>
+</main>
+<script>
+  // One language at a time: the link's, or the browser's (Ukrainian or English).
+  function show(lang) {
+    for (const id of ["en", "uk"]) document.getElementById(id).classList.toggle("hidden", id !== lang);
+    document.documentElement.lang = lang;
+  }
+  for (const a of document.querySelectorAll("[data-lang]")) a.addEventListener("click", () => show(a.dataset.lang));
+  const wanted = location.hash.slice(1);
+  show(wanted === "uk" || wanted === "en" ? wanted
+    : ((navigator.language || "en").toLowerCase().startsWith("uk") ? "uk" : "en"));
+</script>
+</body>
+</html>

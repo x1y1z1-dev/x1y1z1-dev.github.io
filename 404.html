@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- The invite page of the game (P4.3). GitHub Pages serves this file for every missing path, so an invite link
+     https://x1y1z1-dev.github.io/join/<CODE> lands here: it shows the room code and how to join. With the game
+     installed, Android opens the link in the game instead (App Links, .well-known/assetlinks.json). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tic Tac Toe: X vs O</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(160deg, #142a57, #2a5298); color: #e8eefc;
+    font: 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { box-sizing: border-box; width: min(440px, calc(100% - 32px)); padding: 28px 24px; border-radius: 18px;
+    background: rgba(13, 23, 51, 0.82); border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; }
+  h1 { margin: 0 0 6px; font-size: 26px; color: #ffd166; }
+  .caption { margin-top: 22px; font-size: 13px; letter-spacing: 0.08em; opacity: 0.75; }
+  .code { font-size: 44px; font-weight: 700; letter-spacing: 0.12em; color: #ffd166; margin: 4px 0 10px; }
+  button, a.button { display: block; box-sizing: border-box; width: 100%; padding: 13px; margin-top: 12px;
+    border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.15); font: inherit; font-weight: 600;
+    text-decoration: none; cursor: pointer; background: #22305a; color: #e8eefc; }
+  a.button.primary { background: #ffd166; color: #1e3c72; border: none; }
+  p { margin: 10px 0 0; opacity: 0.9; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Tic Tac Toe: X vs O</h1>
+  <p id="invite"></p>
+  <div id="room">
+    <div class="caption" id="caption"></div>
+    <div class="code" id="code"></div>
+    <button id="copy"></button>
+    <p id="how"></p>
+  </div>
+  <a class="button primary" id="play" href="https://play.google.com/store/apps/details?id=org.godottest.tictactoe"></a>
+</main>
+<script>
+  // English, or Ukrainian when the browser prefers it.
+  const TEXTS = {
+    en: { invite: "A friend invites you to a game.", caption: "ROOM CODE", copy: "Copy code", copied: "Code copied",
+      how: "Open the game, tap Online, then enter this code under Join by code.", play: "Get the game on Google Play",
+      none: "Play Tic Tac Toe with friends: 14 modes, online by code." },
+    uk: { invite: "Друг запрошує вас у гру.", caption: "КОД КІМНАТИ", copy: "Копіювати код", copied: "Код скопійовано",
+      how: "Відкрийте гру, натисніть «Онлайн» і введіть цей код у полі «Увійти за кодом».",
+      play: "Завантажити гру з Google Play", none: "Хрестики-нулики з друзями: 14 режимів, онлайн за кодом." },
+  };
+  const t = TEXTS[(navigator.language || "en").toLowerCase().startsWith("uk") ? "uk" : "en"];
+  document.documentElement.lang = t === TEXTS.uk ? "uk" : "en";
+  // The code alphabet of the game: no look-alikes (0 / O, 1 / I / L).
+  const match = location.pathname.match(/\/join\/([A-HJKMNP-Za-hjkmnp-z2-9]{6})\/?$/);
+  const code = match ? match[1].toUpperCase() : "";
+  document.getElementById("invite").textContent = code ? t.invite : t.none;
+  document.getElementById("room").classList.toggle("hidden", !code);
+  document.getElementById("caption").textContent = t.caption;
+  document.getElementById("code").textContent = code;
+  document.getElementById("how").textContent = t.how;
+  document.getElementById("play").textContent = t.play;
+  const copy = document.getElementById("copy");
+  copy.textContent = t.copy;
+  copy.addEventListener("click", () => {
+    navigator.clipboard.writeText(code).then(() => { copy.textContent = t.copied; });
+  });
+</script>
+</body>
+</html>
